@@ -8,13 +8,13 @@ SC_MODULE(memory_consumer) {
     tlm_utils::simple_target_socket<memory_consumer> socket;
 
     // Internal memory buffer for 780x610 pixels
-    std::vector<unit32_t> mem_buffer;
+    std::vector<uint32_t> mem_buffer;
 
     SC_HAS_PROCESS(memory_consumer);
 
     memory_consumer(sc_module_name name) : sc_module(name), socket("socket") {
 
-        socket.register_b_transport(this, &Memory_Consumer::b_transport);
+        socket.register_b_transport(this, &memory_consumer::b_transport);
         mem_buffer.resize(780 * 610, 0);
     }
 
@@ -23,7 +23,7 @@ SC_MODULE(memory_consumer) {
         tlm::tlm_command cmd = trans.get_command();
         sc_dt::uint64    addr = trans.get_address();
         unsigned char* ptr  = trans.get_data_ptr();
-        unsigned int     len  = trans.get_data_length();
+        unsigned int   len  = trans.get_data_length();
 
         if (cmd == tlm::TLM_WRITE_COMMAND) {
             // Convert byte address to index (assuming 4-byte pixels)

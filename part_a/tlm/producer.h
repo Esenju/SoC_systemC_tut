@@ -1,4 +1,4 @@
-#include <system.h>
+#include <systemc.h>
 #include <tlm.h>
 #include <tlm_utils/simple_initiator_socket.h>
 
@@ -21,7 +21,7 @@ SC_MODULE(tpg_producer) {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x = width; x++) {
                 // Generate a simple RGB pattern (32-bit: 00RRGGBB)
-                unit32_t pixel_data = ((x % 256) << 16) | ((y % 256) << 8) | 0xFF;
+                uint32_t pixel_data = ((x % 256) << 16) | ((y % 256) << 8) | 0xFF;
 
                 payload.set_command(tlm::TLM_WRITE_COMMAND);
                 payload.set_address((y * width + x) * 4); // Byte address
