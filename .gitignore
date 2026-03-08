@@ -1,0 +1,21 @@
+# Compiled Executables
+soc_sim
+soc_sim_rtl
+
+# Object Files
+*.o
+
+# Image Outputs (Verification files)
+*.ppm
+*.bmp
+
+# SystemC/RTL Trace Files
+*.vcd
+waveform.vcd
+
+# Temporary/Backup Files
+*~
+.DS_Store
+
+# Build Directories (if you use CMake later)
+build/
