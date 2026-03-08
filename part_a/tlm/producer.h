@@ -19,7 +19,7 @@ SC_MODULE(tpg_producer) {
         const int height = 610;
 
         for (int y = 0; y < height; y++) {
-            for (int x = 0; x = width; x++) {
+            for (int x = 0; x < width; x++) {
                 // Generate a simple RGB pattern (32-bit: 00RRGGBB)
                 uint32_t pixel_data = ((x % 256) << 16) | ((y % 256) << 8) | 0xFF;
 
@@ -38,7 +38,10 @@ SC_MODULE(tpg_producer) {
                     SC_REPORT_ERROR("TLM", "TPG transaction failed!");
             }
         }
+        sc_stop(); // Explicitly tells the kernel to finish
         cout << "TPG: Frame transfer complete at " << sc_time_stamp() << endl;
+        
+        cout << "All pixels sent. Stopping simulation." << endl;
     }
 };
 
